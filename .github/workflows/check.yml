@@ -1,0 +1,16 @@
+name: Quick Test
+on: [push, pull_request]
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Code check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+    - name: Install hatch
+      run: pip install hatch
+    - name: Run check
+      run: hatch fmt --check

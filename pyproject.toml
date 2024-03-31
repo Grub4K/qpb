@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qpb"
+dynamic = ["version"]
+description = "A cli tool to help de-/encode protobuf"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+keywords = ["protobuf"]
+authors = [
+  { name = "Simon Sawicki", email = "contact@grub4k.xyz" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.scripts]
+qpb = "qpb.__main__:main"
+
+[project.urls]
+Documentation = "https://github.com/Grub4K/qpb#readme"
+Issues = "https://github.com/Grub4K/qpb/issues"
+Source = "https://github.com/Grub4K/qpb"
+
+[tool.hatch.version]
+path = "qpb/__init__.py"
+
+[tool.hatch.envs.default]
+path = ".venv"
+dependencies = [
+  "pre-commit",
+  "pyinstaller",
+]
+
+[tool.hatch.envs.default.scripts]
+install = "pre-commit install"
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
