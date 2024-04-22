@@ -7,7 +7,7 @@ name = "qpb"
 dynamic = ["version"]
 description = "A cli tool to help de-/encode protobuf"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.8"
 license = "MIT"
 keywords = ["protobuf"]
 authors = [
@@ -30,7 +30,7 @@ dependencies = []
 qpb = "qpb.__main__:main"
 
 [project.urls]
-Documentation = "https://github.com/Grub4K/qpb#readme"
+Documentation = "https://github.com/Grub4K/qpb"
 Issues = "https://github.com/Grub4K/qpb/issues"
 Source = "https://github.com/Grub4K/qpb"
 
@@ -47,8 +47,34 @@ dependencies = [
 [tool.hatch.envs.default.scripts]
 install = "pre-commit install"
 
+[tool.hatch.envs.hatch-static-analysis]
+dependencies = ["ruff==0.4.*"]
+config-path = "pyproject.toml"
+
 [[tool.hatch.envs.all.matrix]]
 python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+  "C",
+  "E",
+  "F",
+  "I",
+  "PL",
+  "PYI",
+  "RET",
+  "RUF",
+  "SIM",
+  "TD",
+  "TID",
+  "W",
+]
+
 [tool.ruff.lint.isort]
 required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
